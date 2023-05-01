@@ -109,7 +109,7 @@ exports.protect = catchAsyncError(async (req, res, next) => {
     );
   }
 
-  // Grant access to protected route
+  // Grant access to protected route by adding user to req object
   req.user = currentUser;
   next();
 });
