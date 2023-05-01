@@ -1,13 +1,12 @@
-const express = require("express");
-const dotenv = require("dotenv");
+const express = require('express');
+const authController = require('../controllers/authController');
+const postController = require('./../controllers/postController');
 
-const Post = require("./../models/post");
-const postController = require("./../controllers/postController");
 //-------------------Router------------------//
 const router = express.Router();
 router
-  .route("/")
+  .route('/')
   .get(postController.getRequest)
-  .post(postController.postRequest);
+  .post(authController.protect, postController.postRequest);
 //-------------------------------------------//
 module.exports = router;
