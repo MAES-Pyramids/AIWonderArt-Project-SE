@@ -1,10 +1,10 @@
-const { v2: cloudinary } = require("cloudinary");
-const Post = require("./../models/post");
+const { v2: cloudinary } = require('cloudinary');
+const Post = require('./../models/post');
 //--------------cloudinary Config-------------//
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 //---------------Controller------------------//
 exports.getRequest = async (req, res, next) => {
@@ -14,7 +14,7 @@ exports.getRequest = async (req, res, next) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: "Fetching posts failed, please try again",
+      message: 'Fetching posts failed, please try again'
     });
   }
 };
@@ -27,14 +27,14 @@ exports.postRequest = async (req, res) => {
     const newPost = await Post.create({
       name,
       prompt,
-      photo: photoUrl.url,
+      photo: photoUrl.url
     });
 
     res.status(200).json({ success: true, data: newPost });
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: "Unable to create a post, please try again",
+      message: 'Unable to create a post, please try again'
     });
   }
 };

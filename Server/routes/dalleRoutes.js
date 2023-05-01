@@ -1,11 +1,7 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const dalleController = require("./../controllers/dalleController");
+const express = require('express');
+const dalleController = require('./../controllers/dalleController');
 //-------------------Router------------------//
 const router = express.Router();
-router
-  .route("/")
-  .get(dalleController.getRequest)
-  .post(dalleController.postRequest);
+router.route('/').post(dalleController.postRequest);
 //-------------------------------------------//
 module.exports = router;
