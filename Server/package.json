@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "start:prod": "set NODE_ENV=production&& nodemon server.js",
+    "build:prod": "set NODE_ENV=production&& node server.js",
     "debug": "ndb server.js"
   },
   "keywords": [],
