@@ -23,13 +23,16 @@ const Home = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8080/api/v1/Post", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        "https://aiwonderart.onrender.com/api/v1/Post",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.ok) {
         const result = await response.json();

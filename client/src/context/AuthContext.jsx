@@ -10,7 +10,7 @@ const AuthProvider = ({ children }) => {
   const signUp = async (name, email, password, passwordConfirm) => {
     try {
       const response = await fetch(
-        "http://localhost:8080/api/v1/Users/signup",
+        "https://aiwonderart.onrender.com/api/v1/Users/signup",
         {
           method: "POST",
           headers: {
@@ -34,7 +34,7 @@ const AuthProvider = ({ children }) => {
     try {
       const response = await axios({
         method: "POST",
-        url: "http://localhost:8080/api/v1/Users/login",
+        url: "https://aiwonderart.onrender.com/api/v1/Users/login",
         data: {
           email,
           password,
