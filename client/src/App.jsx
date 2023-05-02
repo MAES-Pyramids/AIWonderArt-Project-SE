@@ -2,6 +2,11 @@ import React from "react";
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 import { logo } from "./assets";
 import { Home, CreatePost } from "./pages";
+import RequireAuth from "./context/Require";
+import AuthProvider from "./context/AuthContext";
+import Islogged from "./context/Islogged";
+import LogIn from "./authentication/Login";
+import SignUp from "./authentication/SignUp";
 
 const App = () => {
   return (
@@ -20,10 +25,35 @@ const App = () => {
       </header>
 
       <main className="sm:p-8 px-4 py-8 w-full bg-[#f9fafe] min-h-[calc(100vh-73px)]">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="create-post" element={<CreatePost />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route
+              path="/login"
+              element={
+                <Islogged>
+                  <LogIn />
+                </Islogged>
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <Islogged>
+                  <SignUp />
+                </Islogged>
+              }
+            />
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/create-post"
+              element={
+                <RequireAuth>
+                  <CreatePost />
+                </RequireAuth>
+              }
+            />
+          </Routes>
+        </AuthProvider>
       </main>
     </BrowserRouter>
   );
