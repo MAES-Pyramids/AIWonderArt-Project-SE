@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-const cors = require('cors');
+// const cors = require('cors');
 
 const cookieParser = require('cookie-parser');
 const userRouter = require('./routes/userRoutes');
@@ -11,11 +11,10 @@ const globalErrorHandler = require('./controllers/errorsController');
 //-------------------------------------------//
 const app = express();
 //---------------middleware------------------//
-app.use(cors());
-// {   origin: 'http://127.0.0.1:5173' }
+// app.use(cors());
 app.use(express.json({ limit: '50mb' }));
-app.use(cookieParser());
 app.use(morgan('dev'));
+app.use(cookieParser());
 //-----------------Routes--------------------//
 app.use('/api/v1/Post', postRouter);
 app.use('/api/v1/Users', userRouter);

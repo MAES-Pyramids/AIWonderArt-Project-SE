@@ -7,6 +7,6 @@ const router = express.Router();
 router
   .route('/')
   .get(authController.protect, postController.getRequest)
-  .post(authController.protect, postController.postRequest);
+  .post(postController.postRequest);
 //-------------------------------------------//
 module.exports = router;

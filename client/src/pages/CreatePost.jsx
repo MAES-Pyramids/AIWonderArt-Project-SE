@@ -1,3 +1,4 @@
+import { useAuth } from "../context/AuthContext";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FormField, Loader } from "../components";
@@ -13,6 +14,7 @@ const CreatePost = () => {
   });
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { token } = useAuth();
 
   const generateImage = async () => {
     if (form.prompt) {
@@ -50,6 +52,7 @@ const CreatePost = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(form),
         });

@@ -5,8 +5,9 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState();
+  const [token, setToken] = useState();
 
-  const signup = async (name, email, password, passwordConfirm) => {
+  const signUp = async (name, email, password, passwordConfirm) => {
     try {
       const response = await fetch(
         "http://localhost:8080/api/v1/Users/signup",
@@ -40,7 +41,8 @@ const AuthProvider = ({ children }) => {
         },
       });
       if (response.data.status === "success") {
-        // document.cookie = `jwt=${response.data.token}`;
+        const { token } = response.data;
+        setToken(token);
         const { user } = response.data.data;
         setUser(user);
         return response.data;
@@ -50,7 +52,7 @@ const AuthProvider = ({ children }) => {
     }
   };
   return (
-    <AuthContext.Provider value={{ user, signup, login }}>
+    <AuthContext.Provider value={{ user, signUp, login, token }}>
       {!loading && children}
     </AuthContext.Provider>
   );
