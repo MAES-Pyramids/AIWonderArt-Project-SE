@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Loader, Card, FormField } from "../components";
-import { useAuth } from "../context/AuthContext";
 
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
@@ -17,7 +16,6 @@ const Home = () => {
   const [searchText, setSearchText] = useState("");
   const [searchedResults, setSearchedResults] = useState(null);
   const [searchTimeout, setSearchTimeout] = useState(null);
-  const { token } = useAuth();
 
   const fetchPosts = async () => {
     setLoading(true);

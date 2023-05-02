@@ -6,7 +6,7 @@ const postController = require('./../controllers/postController');
 const router = express.Router();
 router
   .route('/')
-  .get(authController.protect, postController.getRequest)
-  .post(postController.postRequest);
+  .get(postController.getRequest)
+  .post(authController.protect, postController.postRequest);
 //-------------------------------------------//
 module.exports = router;
