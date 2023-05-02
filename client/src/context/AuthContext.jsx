@@ -40,6 +40,7 @@ const AuthProvider = ({ children }) => {
         },
       });
       if (response.data.status === "success") {
+        // document.cookie = `jwt=${response.data.token}`;
         const { user } = response.data.data;
         setUser(user);
         return response.data;

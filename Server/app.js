@@ -12,9 +12,10 @@ const globalErrorHandler = require('./controllers/errorsController');
 const app = express();
 //---------------middleware------------------//
 app.use(cors());
-app.use(morgan('dev'));
-app.use(cookieParser());
+// {   origin: 'http://127.0.0.1:5173' }
 app.use(express.json({ limit: '50mb' }));
+app.use(cookieParser());
+app.use(morgan('dev'));
 //-----------------Routes--------------------//
 app.use('/api/v1/Post', postRouter);
 app.use('/api/v1/Users', userRouter);
