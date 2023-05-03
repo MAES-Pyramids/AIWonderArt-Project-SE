@@ -55,4 +55,4 @@ To install this project on your computer, follow these steps:
 
 ## Demo
 
-[Demo] (https://magic-images.vercel.app/)
+[Demo] (https://ai-wonder-art.vercel.app/)
