@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const compression = require('compression');
 
 const cookieParser = require('cookie-parser');
 const userRouter = require('./routes/userRoutes');
@@ -13,8 +14,9 @@ const app = express();
 //---------------middleware------------------//
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
-app.use(morgan('dev'));
 app.use(cookieParser());
+app.use(compression());
+app.use(morgan('dev'));
 //-----------------Routes--------------------//
 app.use('/api/v1/Post', postRouter);
 app.use('/api/v1/Users', userRouter);
