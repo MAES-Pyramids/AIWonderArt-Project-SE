@@ -9,20 +9,18 @@ function signToken(id) {
     expiresIn: process.env.JWT_EXPIRES_IN
   });
 }
-function createAndSendToken(user, statusCode, res) {
+function createAndSendToken(user, statusCode, req, res) {
   const token = signToken(user._id);
-  // Set cookie options
-  const cookieOptions = {
-    expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-    ),
-    httpOnly: true
-  };
-  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
   // remove password from  user data output
   user.password = undefined;
   // Send cookie
-  res.cookie('jwt', token, cookieOptions);
+  res.cookie('jwt', token, {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    httpOnly: true,
+    secure: req.secure || req.headers['x-forwarded-proto'] === 'https'
+  });
   // Send response
   res.status(statusCode).json({
     status: 'success',
@@ -41,7 +39,7 @@ exports.signup = catchAsyncError(async (req, res, next) => {
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm
   });
-  createAndSendToken(newUser, 201, res);
+  createAndSendToken(newUser, 201, req, res);
 });
 //-------------- Login
 exports.login = catchAsyncError(async (req, res, next) => {
@@ -59,7 +57,7 @@ exports.login = catchAsyncError(async (req, res, next) => {
   }
 
   // 3) If everything ok, send token to client
-  createAndSendToken(user, 200, res);
+  createAndSendToken(user, 200, req, res);
 });
 //-------------- Logout
 exports.logout = (req, res) => {

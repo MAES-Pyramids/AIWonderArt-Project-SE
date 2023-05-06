@@ -13,10 +13,19 @@ const globalErrorHandler = require('./controllers/errorsController');
 const app = express();
 //---------------middleware------------------//
 app.use(cors());
+app.options('*', cors());
+
+// Trust proxies
+app.enable('trust proxy');
+
+// Development logging
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
+
 app.use(express.json({ limit: '50mb' }));
 app.use(cookieParser());
 app.use(compression());
-app.use(morgan('dev'));
 //-----------------Routes--------------------//
 app.use('/api/v1/Post', postRouter);
 app.use('/api/v1/Users', userRouter);
