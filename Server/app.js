@@ -17,12 +17,6 @@ app.options('*', cors());
 
 // Trust proxies
 app.enable('trust proxy');
-// Set security HTTP headers
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', '*');
-  next();
-});
 
 // Development logging
 if (process.env.NODE_ENV === 'development') {
