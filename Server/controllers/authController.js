@@ -24,6 +24,7 @@ function createAndSendToken(user, statusCode, req, res) {
     sameSite: 'none',
     secure: req.secure || req.headers['x-forwarded-proto'] === 'https'
   });
+
   // Send response
   res.status(statusCode).json({
     status: 'success',

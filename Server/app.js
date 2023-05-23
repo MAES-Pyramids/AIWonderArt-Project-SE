@@ -14,14 +14,17 @@ const app = express();
 //---------------middleware------------------//
 // Implement CORS
 const corsOptions = {
-  origin: 'https://ai-wonder-art.vercel.app',
+  origin: ' https://aiwonderart.onrender.com',
   credentials: true
 };
 app.use(cors(corsOptions));
-// app.options('*', cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://ai-wonder-art.vercel.app');
+  res.header(
+    'Access-Control-Allow-Origin',
+    ' https://aiwonderart.onrender.com'
+  );
   res.header('Access-Control-Allow-Credentials', 'true');
   next();
 });
