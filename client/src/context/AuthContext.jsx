@@ -39,6 +39,7 @@ const AuthProvider = ({ children }) => {
           email,
           password,
         },
+        withCredentials: true,
       });
       if (response.data.status === "success") {
         const { token } = response.data;

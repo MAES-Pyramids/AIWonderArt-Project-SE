@@ -12,8 +12,18 @@ const globalErrorHandler = require('./controllers/errorsController');
 //-------------------------------------------//
 const app = express();
 //---------------middleware------------------//
-app.use(cors());
-app.options('*', cors());
+// Implement CORS
+const corsOptions = {
+  origin: 'https://aiwonderart.onrender.com',
+  credentials: true
+};
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 
 // Trust proxies
 app.enable('trust proxy');
