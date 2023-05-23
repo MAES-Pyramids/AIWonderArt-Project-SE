@@ -14,7 +14,7 @@ const app = express();
 //---------------middleware------------------//
 // Implement CORS
 const corsOptions = {
-  origin: 'https://aiwonderart.onrender.com',
+  origin: 'https://ai-wonder-art.vercel.app/',
   credentials: true
 };
 app.use(cors(corsOptions));

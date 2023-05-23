@@ -15,7 +15,7 @@ function createAndSendToken(user, statusCode, req, res) {
   user.password = undefined;
   // Send cookie
   res.cookie('jwt', token, {
-    domain: 'https://aiwonderart.onrender.com',
+    domain: 'https://ai-wonder-art.vercel.app',
     path: '/',
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
