@@ -10,7 +10,6 @@ This project is an AI image generator that uses the OpenAI DALL-E API to create 
 - View posts shared by the community.
 
 ## Technologies Used
-
 - MongoDB: for storing user-generated posts.
 - Express: for building the backend API.
 - React: for building the frontend interface.
